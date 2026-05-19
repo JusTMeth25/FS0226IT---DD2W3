@@ -13,22 +13,23 @@ function aggiungiTask(testo, priorita) {
   const prioritaLower = priorita.toLowerCase();
   li.classList.add(`priorita-${prioritaLower}`);
   li.dataset.priorita = prioritaLower;
+  console.log(li.dataset.priorita);
 
   const testoSpan = document.createElement("span");
   testoSpan.textContent = testo;
-
+// crea badge
   const prioritaSpan = document.createElement("span");
   prioritaSpan.textContent = prioritaLower;
   prioritaSpan.classList.add("badge");
-
+// crea data
   const dataSpan = document.createElement("span");
-  dataSpan.textContent = new Date().toLocaleDateString() + ", " + new Date().toLocaleTimeString();
+  dataSpan.textContent = new Date().toLocaleString("it-IT");
   dataSpan.classList.add("date");
-
+// crea button
   const btn = document.createElement("button");
   btn.textContent = "Elimina";
   btn.classList.add("btn-elimina");
-
+// append testo, priorita, data e button
   li.append(testoSpan, prioritaSpan, dataSpan, btn);
   lista.appendChild(li);
   aggiornaContatore();
@@ -48,21 +49,21 @@ function eliminaTask(indice) {
 }
 
 function evidenzia(indice) {
-  const tasks = lista.querySelectorAll("li");
+  const tasks = document.querySelectorAll("li");
   if (tasks[indice]) {
     tasks[indice].classList.add("evidenziato");
   }
 }
 
 function togliEvidenzia(indice) {
-  const tasks = lista.querySelectorAll("li");
+  const tasks = document.querySelectorAll("li");
   if (tasks[indice]) {
     tasks[indice].classList.remove("evidenziato");
   }
 }
 
 function contaPerPriorita() {
-  const tasks = lista.querySelectorAll("li");
+  const tasks = document.querySelectorAll("li");
   const conteggio = { ALTA: 2, MEDIA: 1, BASSA: 2 };
 
   tasks.forEach((li) => {

@@ -63,7 +63,7 @@ function togliEvidenzia(indice) {
 
 function contaPerPriorita() {
   const tasks = lista.querySelectorAll("li");
-  const conteggio = { ALTA: 0, MEDIA: 0, BASSA: 0 };
+  const conteggio = { ALTA: 2, MEDIA: 1, BASSA: 2 };
 
   tasks.forEach((li) => {
     const priorita = li.dataset.priorita;
@@ -73,6 +73,7 @@ function contaPerPriorita() {
   });
   return conteggio;
 }
+console.log(contaPerPriorita());
 
 aggiungiTask("Pagare le bollette", "ALTA");
 aggiungiTask("Studiare JavaScript", "MEDIA");

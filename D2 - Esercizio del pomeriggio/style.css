@@ -49,3 +49,45 @@ li {
    - .data (la data di creazione)
    - .evidenziato (sfondo giallo, bordo)
 */
+
+.priorita-alta {
+  background-color: #FDE2E2;
+}
+
+.priorita-media {
+  background-color: #fff4b8;
+}
+
+.priorita-bassa {
+  background-color: #E2F5E2;
+}
+
+.badge {
+  background-color: #1B2845;
+  color: white;
+  font-size: 0.85rem;
+  border-radius: 999px;
+  padding: 2px 8px;
+  margin-left: 10px;
+  text-transform: uppercase;
+}
+
+.evidenziato {
+  background-color: #fffbe6;
+  border: 2px solid #f6c948;
+}
+
+.btn-elimina {
+  display: inline-block;
+  border: 2px solid black;
+  border-radius: 8px;
+  margin-left: 16px;
+  margin-right: 0px;
+}
+
+.date {
+  font-size: 0.9em;
+  margin-left: 62px;
+  margin-right: 0px;
+  text-align: center;
+}

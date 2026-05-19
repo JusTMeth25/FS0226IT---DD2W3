@@ -8,9 +8,28 @@
 const lista = document.querySelector("#lista-task");
 const contatore = document.querySelector("#contatore");
 
-function aggiungiTask(testo) {
+function aggiungiTask(testo, priorita) {
   const li = document.createElement("li");
-  li.textContent = testo;
+  const prioritaLower = priorita.toLowerCase();
+  li.classList.add(`priorita-${prioritaLower}`);
+  li.dataset.priorita = prioritaLower;
+
+  const testoSpan = document.createElement("span");
+  testoSpan.textContent = testo;
+
+  const prioritaSpan = document.createElement("span");
+  prioritaSpan.textContent = prioritaLower;
+  prioritaSpan.classList.add("badge");
+
+  const dataSpan = document.createElement("span");
+  dataSpan.textContent = new Date().toLocaleDateString() + ", " + new Date().toLocaleTimeString();
+  dataSpan.classList.add("date");
+
+  const btn = document.createElement("button");
+  btn.textContent = "Elimina";
+  btn.classList.add("btn-elimina");
+
+  li.append(testoSpan, prioritaSpan, dataSpan, btn);
   lista.appendChild(li);
   aggiornaContatore();
 }
@@ -20,9 +39,46 @@ function aggiornaContatore() {
   contatore.textContent = tasks.length;
 }
 
-aggiungiTask("Studiare JavaScript");
-aggiungiTask("Bere il caffè");
-aggiungiTask("Riposarsi");
+function eliminaTask(indice) {
+  const tasks = lista.querySelectorAll("li");
+  if (indice >= 0 && indice < tasks.length) {
+    tasks[indice].remove();
+    aggiornaContatore();
+  }
+}
+
+function evidenzia(indice) {
+  const tasks = lista.querySelectorAll("li");
+  if (tasks[indice]) {
+    tasks[indice].classList.add("evidenziato");
+  }
+}
+
+function togliEvidenzia(indice) {
+  const tasks = lista.querySelectorAll("li");
+  if (tasks[indice]) {
+    tasks[indice].classList.remove("evidenziato");
+  }
+}
+
+function contaPerPriorita() {
+  const tasks = lista.querySelectorAll("li");
+  const conteggio = { ALTA: 0, MEDIA: 0, BASSA: 0 };
+
+  tasks.forEach((li) => {
+    const priorita = li.dataset.priorita;
+    if (conteggio[priorita] !== undefined) {
+      conteggio[priorita] += 1;
+    }
+  });
+  return conteggio;
+}
+
+aggiungiTask("Pagare le bollette", "ALTA");
+aggiungiTask("Studiare JavaScript", "MEDIA");
+aggiungiTask("Comprare il pane", "BASSA");
+aggiungiTask("Bere il caffè", "ALTA");
+aggiungiTask("Riposarsi", "BASSA");
 
 /* SCRIVI QUI LE TUE FUNZIONI:
    1. Modifica aggiungiTask per accettare priorita
